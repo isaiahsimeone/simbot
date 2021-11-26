@@ -14,7 +14,7 @@ import simbot.SimPlayer;
 import java.io.File;
 import java.util.List;
 
-public class CacheCmd implements Command {
+public class CacheCmd  {
     private SimPlayer simplayer;
     private String songID;
 
@@ -27,8 +27,12 @@ public class CacheCmd implements Command {
         return songID;
     }
 
-    @Override
     public boolean execute() {
+        // WIP
+        return false;
+    }
+
+    public boolean executeX() {
         Config config = new Config.Builder()
                 .maxRetries(1)
                 .header("Accept-Language", "en-AU,en;")
@@ -78,8 +82,4 @@ public class CacheCmd implements Command {
         return true;
     }
 
-    @Override
-    public String get_command_name() {
-        return "cache";
-    }
 }

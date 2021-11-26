@@ -9,12 +9,12 @@ import org.javacord.api.event.message.MessageCreateEvent;
 
 public class SimPlayer {
     boolean isInitialised = false;
-    AudioConnection audioConnection = null;
-    ServerVoiceChannel vc;
-    AudioPlayerManager apm;
-    AudioPlayer ap;
-    TrackScheduler ts;
-    MessageCreateEvent lastEvent;
+    private AudioConnection audioConnection = null;
+    private ServerVoiceChannel vc;
+    private AudioPlayerManager apm;
+    private AudioPlayer ap;
+    private TrackScheduler ts;
+    private MessageCreateEvent lastEvent;
 
     public SimPlayer(AudioPlayerManager apm, AudioPlayer ap, TrackScheduler ts) {
         this.apm = apm;
@@ -37,7 +37,6 @@ public class SimPlayer {
     public void init(ServerVoiceChannel vc, AudioSource source) {
         this.vc = vc;
         vc.connect().thenAccept(audioConnection -> {
-            // Create an audio source and add it to the audio connection's queue
             audioConnection.setAudioSource(source);
             this.audioConnection = audioConnection;
         }).exceptionally(e -> {

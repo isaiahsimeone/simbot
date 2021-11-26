@@ -13,6 +13,10 @@ public class Aliases {
     private final static ArrayList<String> aliases_skip = new ArrayList<>();
     private final static ArrayList<String> aliases_cache = new ArrayList<>();
     private final static ArrayList<String> aliases_cerberus = new ArrayList<>();
+    private final static ArrayList<String> aliases_queuelist = new ArrayList<>();
+    private final static ArrayList<String> aliases_changelog = new ArrayList<>();
+    private final static ArrayList<String> aliases_leftorright = new ArrayList<>();
+    private final static ArrayList<String> aliases_pickperson = new ArrayList<>();
 
     static {
         // Play aliases
@@ -64,9 +68,66 @@ public class Aliases {
         aliases_cerberus.add("cerberus");
         aliases_cerberus.add("cerb");
 
+        // Queuelist aliases
+        aliases_queuelist.add("queuelist");
+        aliases_queuelist.add("ql");
+        aliases_queuelist.add("queuel");
+        aliases_queuelist.add("qlist");
+
+        // Changelog aliases
+        aliases_changelog.add("changelog");
+        aliases_changelog.add("cl");
+
+        // Left or right aliases
+        aliases_leftorright.add("leftorright");
+        aliases_leftorright.add("lor");
+        aliases_leftorright.add("rightorleft");
+        aliases_leftorright.add("rol");
+        aliases_leftorright.add("l/r");
+        aliases_leftorright.add("l||r");
+        aliases_leftorright.add("lr");
+        aliases_leftorright.add("lorr");
+
+        // Pick person aliases
+        aliases_pickperson.add("pickperson");
+        aliases_pickperson.add("pickfromvoicechannel");
+        aliases_pickperson.add("randompickuser");
+        aliases_pickperson.add("picksomeone");
+        aliases_pickperson.add("spinthewheel");
+        aliases_pickperson.add("selectrandomuser");
+        aliases_pickperson.add("random");
+
+
     }
 
     public static ArrayList<String> get_aliases_for(TokenType kw) {
+        switch (kw) {
+            case KW_PLAY:
+                return aliases_play;
+            case KW_STOP:
+                return aliases_stop;
+            case KW_PAUSE:
+                return aliases_pause;
+            case KW_RESUME:
+                return aliases_resume;
+            case KW_QUEUE:
+                return aliases_queue;
+            case KW_SKIP:
+                return aliases_skip;
+            case KW_CACHE:
+                return aliases_cache;
+            case KW_CERBERUS:
+                return aliases_cerberus;
+            case KW_LIST_QUEUE:
+                return aliases_queuelist;
+            case KW_CHANGELOG:
+                return aliases_changelog;
+            case KW_LEFTORRIGHT:
+                return aliases_leftorright;
+            case KW_PICKPERSON:
+                return aliases_pickperson;
+        }
+        /*
         if (Objects.equals(kw.get_name(), "play"))
             return aliases_play;
         if (Objects.equals(kw.get_name(), "stop"))
@@ -83,6 +144,15 @@ public class Aliases {
             return aliases_cache;
         if (Objects.equals(kw.get_name(), "cerberus"))
             return aliases_cerberus;
+        if (Objects.equals(kw.get_name(), "list-queue"))
+            return aliases_queuelist;
+        if (Objects.equals(kw.get_name(), "changelog"))
+            return aliases_changelog;
+        if (Objects.equals(kw.get_name(), "left-or-right"))
+            return aliases_leftorright;
+        if (Objects.equals(kw.get_name(), "pick-person"))
+            return aliases_pickperson;
+*/
         // Not reached
         return null;
     }

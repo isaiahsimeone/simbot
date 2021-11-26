@@ -17,10 +17,14 @@ import util.YTResolver;
 
 public class Simbot {
 
+    public static boolean debugMode = false;
+
     // Entry-point
     public static void main(String[] args) {
-        String TOKEN = "ODgxNTA5ODQ4ODM4MTgwODg0.YSt4BQ.UvwLqYRgcPfyZCkxWi4SG3E6axk";
+        String TOKEN = "ODgxNTA5ODQ4ODM4MTgwODg0.YSt4BQ.ZL4UD4Q0oE6CKi-t6awjtoSP_2I";
         DiscordApi api = new DiscordApiBuilder().setToken(TOKEN).login().join();
+
+        api.updateActivity("-changelog");
 
         AudioPlayerManager playerManager = new DefaultAudioPlayerManager();
         YoutubeAudioSourceManager yasm = new YoutubeAudioSourceManager();
@@ -28,23 +32,26 @@ public class Simbot {
         AudioPlayer player = playerManager.createPlayer();
         AudioSource source = new simbot.AudioSource(api, player);
         TrackScheduler trackScheduler = new TrackScheduler(player);
+        player.addListener(trackScheduler);
 
         SimPlayer simplayer = new SimPlayer(playerManager, player, trackScheduler);
 
         // Handle commands
         api.addMessageCreateListener(event -> {
-            if (!event.getMessageContent().startsWith("-")) {
+            if (!event.getMessageContent().startsWith("-"))
                 return ;
-            }
 
             simplayer.setLastCmdEvent(event);
+
+            if (debugMode && event.getMessageAuthor().getId() != api.getOwnerId())
+                event.getChannel().sendMessage("Me being worked on");
 
             if (event.getMessageAuthor().getConnectedVoiceChannel().isEmpty()) {
                 event.getMessage().getChannel().sendMessage(Messages.NOT_IN_VOICE_CHAN.get_message());
                 return ;
             }
 
-            // Parse the message
+            // Parse the command
             Parser parser = new Parser(event.getMessageContent());
             if (!parser.parse()) {
                 event.getMessage().addReaction(Emoji.GREY_QUESTION.get_char_code());
@@ -56,17 +63,17 @@ public class Simbot {
 
             ServerVoiceChannel vc = event.getMessageAuthor().getConnectedVoiceChannel().get();
 
-            // Initialise and connect to voice channel if not already
-            if (!simplayer.isInitialised()) {
-                System.out.println("Init simplayer");
-                simplayer.init(vc, source);
-            }
+
 
             String songID;
             switch (parser.get_parsed_command_type()) {
                 case CMD_PLAY:
                     // Entire arglist must be a link (no spaces) or a song name
                     songID = String.join(" ", arg_list);
+
+                    // Initialise and connect to voice channel if not already
+                    if (!simplayer.isInitialised())
+                        simplayer.init(vc, source);
                     PlayCmd.execute(simplayer, songID);
                     break;
                 case CMD_STOP:
@@ -86,6 +93,9 @@ public class Simbot {
                     System.out.println("QUEUE: "+songID);
                     QueueCmd.execute(simplayer, songID);
                     break;
+                case CMD_QUEUELIST:
+                    QueueListCmd.execute(simplayer);
+                    break;
                 case CMD_CERBERUS:
                     simplayer.getLastCmdMessage().getChannel().sendMessage("WIP");
                     // WIP
@@ -102,6 +112,15 @@ public class Simbot {
                         // couldn't find a song
                         break;
                     new CacheCmd(simplayer, songID).execute();
+                case CMD_CHANGELOG:
+                    ChangeLogCmd.execute(simplayer);
+                    break;
+                case CMD_LEFTORRIGHT:
+                    LeftOrRightCmd.execute(simplayer);
+                    break;
+                case CMD_PICKPERSON:
+                    PickPersonCmd.execute(simplayer, vc);
+                    break;
                 default:
                     System.out.println("Default case reached");
                     // no cmd defined for input

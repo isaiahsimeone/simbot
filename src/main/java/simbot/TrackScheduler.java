@@ -5,23 +5,23 @@ import com.sedmelluq.discord.lavaplayer.player.event.AudioEventAdapter;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackEndReason;
 
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class TrackScheduler extends AudioEventAdapter {
 
-    private final AudioPlayer player;
-    private final BlockingQueue<AudioTrack> queue;
+    private AudioPlayer player;
+    public Queue<AudioTrack> queue;
 
     public TrackScheduler(AudioPlayer player) {
         this.player = player;
-        this.queue = new LinkedBlockingQueue<>();
+        this.queue = new LinkedList<>();
     }
 
     public void queue(AudioTrack track) {
-        if (!this.player.startTrack(track, true)) {
-            // if already playing
-            this.queue.offer(track);
+        // If something's playing, queue this track (100 songs max in queue)
+        if (!player.startTrack(track, true) && queue.size() <= 100) {
+            queue.offer(track);
         }
     }
 
@@ -35,5 +35,13 @@ public class TrackScheduler extends AudioEventAdapter {
             // can start next track
             nextTrack();
         }
+    }
+
+    public void dumpQueue() {
+        this.queue.clear();
+    }
+
+    public Queue<AudioTrack> getTrackQueue() {
+        return queue;
     }
 }

@@ -1,6 +1,5 @@
 package parse;
 
-import Commands.Command;
 import Commands.CommandType;
 
 import java.util.ArrayList;
@@ -89,6 +88,9 @@ public class Parser {
             case KW_QUEUE:
                 parse_queue();
                 break;
+            case KW_LIST_QUEUE:
+                parse_queue_list();
+                break;
             case KW_SKIP:
                 parse_skip();
                 break;
@@ -100,6 +102,15 @@ public class Parser {
                 break;
             case KW_CACHE:
                 parse_cache();
+                break;
+            case KW_CHANGELOG:
+                parse_changelog();
+                break;
+            case KW_LEFTORRIGHT:
+                parse_leftorright();
+                break;
+            case KW_PICKPERSON:
+                parse_pickperson();
                 break;
             default:
                 System.out.println("Unknown cmd");
@@ -114,12 +125,42 @@ public class Parser {
         // If we match the play keyword, we can assume that
         // whatever follows is the name/identifier of something to play
         while (!is_match(TokenType.EOL)) {
-            System.out.println("addeed: "+peek_token().get_argument());
+            System.out.println("added: "+peek_token().get_argument());
             argument_list.add(peek_token().get_argument());
             match(TokenType.ARGUMENT);
         }
         match(TokenType.EOL);
         commandType = CommandType.CMD_PLAY;
+    }
+
+    private void parse_pickperson() {
+        match(TokenType.KW_PICKPERSON);
+        match(TokenType.EOL);
+        commandType = CommandType.CMD_PICKPERSON;
+    }
+
+    private void parse_leftorright() {
+        match(TokenType.KW_LEFTORRIGHT);
+        // We ignore the argument as we just want to display it how it already is in the message
+        while (is_match(TokenType.ARGUMENT)) {
+            match(TokenType.ARGUMENT);
+        }
+        match(TokenType.EOL);
+        commandType = CommandType.CMD_LEFTORRIGHT;
+    }
+
+    private void parse_changelog() {
+        match(TokenType.KW_CHANGELOG);
+
+        match(TokenType.EOL);
+        commandType = CommandType.CMD_CHANGELOG;
+    }
+
+    private void parse_queue_list() {
+        System.out.println("Parsing queue list");
+        match(TokenType.KW_LIST_QUEUE);
+        match(TokenType.EOL);
+        commandType = CommandType.CMD_QUEUELIST;
     }
 
     private void parse_stop() {

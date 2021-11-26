@@ -7,7 +7,11 @@ public enum CommandType {
     CMD_SKIP(4),
     CMD_QUEUE(5),
     CMD_CERBERUS(6),
-    CMD_CACHE(7);
+    CMD_CACHE(7),
+    CMD_QUEUELIST(8),
+    CMD_CHANGELOG(9),
+    CMD_LEFTORRIGHT(10),
+    CMD_PICKPERSON(11);
 
     public final int commandType;
 

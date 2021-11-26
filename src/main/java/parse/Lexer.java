@@ -16,6 +16,10 @@ public class Lexer {
         addKeyword(TokenType.KW_RESUME, Aliases.get_aliases_for(TokenType.KW_RESUME));
         addKeyword(TokenType.KW_CERBERUS, Aliases.get_aliases_for(TokenType.KW_CERBERUS));
         addKeyword(TokenType.KW_CACHE, Aliases.get_aliases_for(TokenType.KW_CACHE));
+        addKeyword(TokenType.KW_LIST_QUEUE, Aliases.get_aliases_for(TokenType.KW_LIST_QUEUE));
+        addKeyword(TokenType.KW_CHANGELOG, Aliases.get_aliases_for(TokenType.KW_CHANGELOG));
+        addKeyword(TokenType.KW_LEFTORRIGHT, Aliases.get_aliases_for(TokenType.KW_LEFTORRIGHT));
+        addKeyword(TokenType.KW_PICKPERSON, Aliases.get_aliases_for(TokenType.KW_PICKPERSON));
     }
 
     int nextCh;

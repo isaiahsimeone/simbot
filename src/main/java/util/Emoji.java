@@ -1,7 +1,11 @@
 package util;
 
 public enum Emoji {
-    GREY_QUESTION("❔");
+    GREY_QUESTION("❔"),
+    RED_X("❌"),
+    ARROW_LEFT("⬅️"),
+    ARROW_RIGHT("➡️"),
+    THUMBS_UP("\uD83D\uDC4D");
 
     public final String charcode;
 
