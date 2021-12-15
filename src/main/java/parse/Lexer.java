@@ -20,6 +20,8 @@ public class Lexer {
         addKeyword(TokenType.KW_CHANGELOG, Aliases.get_aliases_for(TokenType.KW_CHANGELOG));
         addKeyword(TokenType.KW_LEFTORRIGHT, Aliases.get_aliases_for(TokenType.KW_LEFTORRIGHT));
         addKeyword(TokenType.KW_PICKPERSON, Aliases.get_aliases_for(TokenType.KW_PICKPERSON));
+        addKeyword(TokenType.KW_FASTFORWARD, Aliases.get_aliases_for(TokenType.KW_FASTFORWARD));
+        addKeyword(TokenType.KW_GETPLAYING, Aliases.get_aliases_for(TokenType.KW_GETPLAYING));
     }
 
     int nextCh;
@@ -50,7 +52,7 @@ public class Lexer {
             current_column++;
             return char_buffer[buffer_pos++];
         }
-        System.out.println("bufp = bufl");
+
         return -1;
     }
 
@@ -66,7 +68,6 @@ public class Lexer {
             if (ch == '-')
                 return new Token(TokenType.START_SYMBOL, current_column, null);
 
-            System.out.println("a: "+ch+", "+(char)nextCh);
 
             if (!Character.isWhitespace(ch))
                 return get_identifier_token(ch, current_column);
@@ -92,7 +93,6 @@ public class Lexer {
         StringBuilder buf = new StringBuilder();
         buf.append(ch);
         while (nextCh != -1 && !Character.isWhitespace((char) nextCh)) {
-            System.out.println("Appending: " + (char) nextCh);
             buf.append((char) nextCh);
             nextCh = get_next_ch();
         }

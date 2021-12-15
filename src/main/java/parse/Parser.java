@@ -112,12 +112,33 @@ public class Parser {
             case KW_PICKPERSON:
                 parse_pickperson();
                 break;
+            case KW_FASTFORWARD:
+                parse_fastforward();
+                break;
+            case KW_GETPLAYING:
+                System.out.println("GET PLAYING");
+                parse_getplaying();
+                break;
             default:
                 System.out.println("Unknown cmd");
                 parse_success = false;
         }
         // Only reached if no valid command specified
 
+    }
+
+    private void parse_getplaying() {
+        match(TokenType.KW_GETPLAYING);
+
+        match(TokenType.EOL);
+        commandType = CommandType.CMD_GETPLAYING;
+    }
+
+    private void parse_fastforward() {
+        match(TokenType.KW_FASTFORWARD);
+
+        match(TokenType.EOL);
+        commandType = CommandType.CMD_FASTFORWARD;
     }
 
     private void parse_play() {
@@ -157,14 +178,12 @@ public class Parser {
     }
 
     private void parse_queue_list() {
-        System.out.println("Parsing queue list");
         match(TokenType.KW_LIST_QUEUE);
         match(TokenType.EOL);
         commandType = CommandType.CMD_QUEUELIST;
     }
 
     private void parse_stop() {
-        System.out.println("parsing stop");
         match(TokenType.KW_STOP);
         match(TokenType.EOL);
         commandType = CommandType.CMD_STOP;
@@ -213,7 +232,6 @@ public class Parser {
         // If we match the play keyword, we can assume that
         // whatever follows is the name/identifier of something to play
         while (!is_match(TokenType.EOL)) {
-            System.out.println("queue tokebn: "+peek_token().get_argument());
             argument_list.add(peek_token().get_argument());
             match(TokenType.ARGUMENT);
         }
@@ -266,16 +284,4 @@ public class Parser {
         Token current_token = stream.get(stream_idx);
         return expected == current_token.get_type();
     }
-
-
 }
-
-/*
-
--play youtubelink
--stop
--queue youtubelink
--pause
--perms modify Statement
-
- */

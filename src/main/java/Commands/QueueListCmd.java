@@ -9,19 +9,20 @@ public class QueueListCmd {
 
     public static boolean execute(SimPlayer simplayer) {
         // Resume track
-        System.out.println("exec ql");
         Queue<AudioTrack> q = simplayer.getTrackScheduler().getTrackQueue();
-        System.out.println("qsz: " + q.size());
         int idx = 0;
         StringBuilder msg = new StringBuilder();
 
-        if (q.size() == 0) {
+        if (q.size() == 0 && simplayer.getAudioPlayer().getPlayingTrack() != null) {
             msg.append("Nothing in queue");
             simplayer.getLastCmdMessage().getChannel().sendMessage(msg.toString());
             return true;
         }
 
         msg.append("```");
+
+        // List playing song
+        msg.append("Now Playing: ").append(simplayer.getAudioPlayer().getPlayingTrack().getInfo().title).append("\n");
 
         for (AudioTrack track : q) {
             if (idx++ == 0)

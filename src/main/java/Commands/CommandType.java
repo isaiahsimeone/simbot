@@ -11,7 +11,9 @@ public enum CommandType {
     CMD_QUEUELIST(8),
     CMD_CHANGELOG(9),
     CMD_LEFTORRIGHT(10),
-    CMD_PICKPERSON(11);
+    CMD_PICKPERSON(11),
+    CMD_FASTFORWARD(12),
+    CMD_GETPLAYING(13);
 
     public final int commandType;
 

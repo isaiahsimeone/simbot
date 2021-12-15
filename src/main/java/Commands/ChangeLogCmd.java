@@ -15,10 +15,13 @@ public class ChangeLogCmd {
                                     ".Simbot reacts to play cmds with thumbs up if they're valid\n" +
                                     ".Simbot can pick someone from the voice channel at random with -spinthewheel\n" +
                                     ".Simbot can generate a left or right template with -leftorright (or -lor)\n" +
-                                    ".Message will be shown when listing the song queue when it's empty\n```";
+                                    ".Message will be shown when listing the song queue if it's empty\n" +
+                                    "V1.3:\n" +
+                                    ".Show current playing song with -current/-whatthis etc\n" +
+                                    ".Queue list shows current playing song (if any)\n```";
 
     public static boolean execute(SimPlayer simplayer) {
         simplayer.getLastCmdMessage().getChannel().sendMessage(changeLog);
-        return false;
+        return true;
     }
 }

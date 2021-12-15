@@ -5,7 +5,8 @@ public enum Emoji {
     RED_X("❌"),
     ARROW_LEFT("⬅️"),
     ARROW_RIGHT("➡️"),
-    THUMBS_UP("\uD83D\uDC4D");
+    THUMBS_UP("\uD83D\uDC4D"),
+    ONE_TWO_THREE_FOUR("\uD83D\uDD22");
 
     public final String charcode;
 

@@ -17,6 +17,8 @@ public class Aliases {
     private final static ArrayList<String> aliases_changelog = new ArrayList<>();
     private final static ArrayList<String> aliases_leftorright = new ArrayList<>();
     private final static ArrayList<String> aliases_pickperson = new ArrayList<>();
+    private final static ArrayList<String> aliases_fastforward = new ArrayList<>();
+    private final static ArrayList<String> aliases_getplaying = new ArrayList<>();
 
     static {
         // Play aliases
@@ -56,6 +58,7 @@ public class Aliases {
         aliases_skip.add("skip");
         aliases_skip.add("next");
         aliases_skip.add("nx");
+        aliases_skip.add("n");
         aliases_skip.add("thissongshit");
         aliases_skip.add("thissongbad");
         aliases_skip.add("nextsong");
@@ -97,6 +100,19 @@ public class Aliases {
         aliases_pickperson.add("selectrandomuser");
         aliases_pickperson.add("random");
 
+        // Fast forward aliases
+        aliases_fastforward.add("fastforward");
+        aliases_fastforward.add("ff");
+        aliases_fastforward.add("advance");
+        aliases_fastforward.add("timeskip");
+
+        // Get current playing aliases
+        aliases_getplaying.add("nowplaying");
+        aliases_getplaying.add("whatdis");
+        aliases_getplaying.add("whatsongisthis");
+        aliases_getplaying.add("whatthis");
+        aliases_getplaying.add("whatsong");
+        aliases_getplaying.add("currentsong");
 
     }
 
@@ -126,34 +142,12 @@ public class Aliases {
                 return aliases_leftorright;
             case KW_PICKPERSON:
                 return aliases_pickperson;
+            case KW_FASTFORWARD:
+                return aliases_fastforward;
+            case KW_GETPLAYING:
+                return aliases_getplaying;
         }
-        /*
-        if (Objects.equals(kw.get_name(), "play"))
-            return aliases_play;
-        if (Objects.equals(kw.get_name(), "stop"))
-            return aliases_stop;
-        if (Objects.equals(kw.get_name(), "pause"))
-            return aliases_pause;
-        if (Objects.equals(kw.get_name(), "resume"))
-            return aliases_resume;
-        if (Objects.equals(kw.get_name(), "queue"))
-            return aliases_queue;
-        if (Objects.equals(kw.get_name(), "skip"))
-            return aliases_skip;
-        if (Objects.equals(kw.get_name(), "cache"))
-            return aliases_cache;
-        if (Objects.equals(kw.get_name(), "cerberus"))
-            return aliases_cerberus;
-        if (Objects.equals(kw.get_name(), "list-queue"))
-            return aliases_queuelist;
-        if (Objects.equals(kw.get_name(), "changelog"))
-            return aliases_changelog;
-        if (Objects.equals(kw.get_name(), "left-or-right"))
-            return aliases_leftorright;
-        if (Objects.equals(kw.get_name(), "pick-person"))
-            return aliases_pickperson;
-*/
-        // Not reached
+
         return null;
     }
 }

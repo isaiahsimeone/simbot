@@ -63,8 +63,6 @@ public class Simbot {
 
             ServerVoiceChannel vc = event.getMessageAuthor().getConnectedVoiceChannel().get();
 
-
-
             String songID;
             switch (parser.get_parsed_command_type()) {
                 case CMD_PLAY:
@@ -120,6 +118,13 @@ public class Simbot {
                     break;
                 case CMD_PICKPERSON:
                     PickPersonCmd.execute(simplayer, vc);
+                    break;
+                case CMD_FASTFORWARD:
+                    FastForwardCmd.execute(simplayer);
+                    break;
+                case CMD_GETPLAYING:
+                    System.out.println("EXECUTE GETP{LAYING");
+                    GetPlayingCmd.execute(simplayer);
                     break;
                 default:
                     System.out.println("Default case reached");

@@ -13,6 +13,8 @@ public enum TokenType {
     KW_CHANGELOG("changelog"),
     KW_LEFTORRIGHT("left-or-right"),
     KW_PICKPERSON("pick-person"),
+    KW_FASTFORWARD("fast-forward"),
+    KW_GETPLAYING("current-song"),
     EOL("end-of-line"),
     NUMERIC("number"),
     ARGUMENT("argument"),

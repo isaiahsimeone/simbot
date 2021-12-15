@@ -14,7 +14,6 @@ public class PlayCmd {
     public static boolean execute(SimPlayer simplayer, String songID) {
         songID = YTResolver.resolveIfRequired(songID);
 
-
         System.out.println("PLAY: "+songID);
 
         AudioPlayer ap = simplayer.getAudioPlayer();
@@ -33,7 +32,9 @@ public class PlayCmd {
                     simplayer.getTrackScheduler().queue(track);
                 }
                 simplayer.getLastCmdMessage().getMessage().addReaction(Emoji.THUMBS_UP.get_char_code());
+                simplayer.getLastCmdMessage().getMessage().addReaction(Emoji.ONE_TWO_THREE_FOUR.get_char_code());
             }
+
             @Override
             public void noMatches() {
                 // Notify the user that we've got nothing
@@ -41,6 +42,7 @@ public class PlayCmd {
                 simplayer.getLastCmdMessage().addReactionToMessage(Emoji.RED_X.get_char_code());
                 simplayer.getTrackScheduler().nextTrack();
             }
+
             @Override
             public void loadFailed(FriendlyException throwable) {
                 System.out.println("LOAD FAILURE");
