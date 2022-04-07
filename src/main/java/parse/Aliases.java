@@ -18,6 +18,7 @@ public class Aliases {
     private final static ArrayList<String> aliases_leftorright = new ArrayList<>();
     private final static ArrayList<String> aliases_pickperson = new ArrayList<>();
     private final static ArrayList<String> aliases_fastforward = new ArrayList<>();
+    private final static ArrayList<String> aliases_rewind = new ArrayList<>();
     private final static ArrayList<String> aliases_getplaying = new ArrayList<>();
 
     static {
@@ -106,6 +107,11 @@ public class Aliases {
         aliases_fastforward.add("advance");
         aliases_fastforward.add("timeskip");
 
+        //Rewind aliases
+        aliases_rewind.add("rw");
+        aliases_rewind.add("rewind");
+        aliases_rewind.add("goback");
+
         // Get current playing aliases
         aliases_getplaying.add("nowplaying");
         aliases_getplaying.add("whatdis");
@@ -144,6 +150,8 @@ public class Aliases {
                 return aliases_pickperson;
             case KW_FASTFORWARD:
                 return aliases_fastforward;
+            case KW_REWIND:
+                return aliases_rewind;
             case KW_GETPLAYING:
                 return aliases_getplaying;
         }

@@ -26,6 +26,7 @@ public class Simbot {
 
         api.updateActivity("-changelog");
 
+
         AudioPlayerManager playerManager = new DefaultAudioPlayerManager();
         YoutubeAudioSourceManager yasm = new YoutubeAudioSourceManager();
         playerManager.registerSourceManager(yasm);
@@ -38,6 +39,10 @@ public class Simbot {
 
         // Handle commands
         api.addMessageCreateListener(event -> {
+        //    if (event.getMessageContent().equals("Simbot, please analyse the last few messages and prove will wrong for me. Cheers.")) {
+        ///        event.getChannel().sendMessage("Analysing...");
+        //        event.getChannel().sendMessage("Fallacy identifed: William, morning is defined as the period between sunrise and noon only. Not 'especially'. My analytics have determined that you have been lawyered by Sim twice in the last hour. ");
+        //    }
             if (!event.getMessageContent().startsWith("-"))
                 return ;
 
@@ -121,6 +126,9 @@ public class Simbot {
                     break;
                 case CMD_FASTFORWARD:
                     FastForwardCmd.execute(simplayer);
+                    break;
+                case CMD_REWIND:
+                    RewindCmd.execute(simplayer);
                     break;
                 case CMD_GETPLAYING:
                     System.out.println("EXECUTE GETP{LAYING");

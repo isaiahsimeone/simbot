@@ -14,6 +14,7 @@ public enum TokenType {
     KW_LEFTORRIGHT("left-or-right"),
     KW_PICKPERSON("pick-person"),
     KW_FASTFORWARD("fast-forward"),
+    KW_REWIND("rewind"),
     KW_GETPLAYING("current-song"),
     EOL("end-of-line"),
     NUMERIC("number"),

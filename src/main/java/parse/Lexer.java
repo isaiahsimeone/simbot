@@ -22,6 +22,7 @@ public class Lexer {
         addKeyword(TokenType.KW_PICKPERSON, Aliases.get_aliases_for(TokenType.KW_PICKPERSON));
         addKeyword(TokenType.KW_FASTFORWARD, Aliases.get_aliases_for(TokenType.KW_FASTFORWARD));
         addKeyword(TokenType.KW_GETPLAYING, Aliases.get_aliases_for(TokenType.KW_GETPLAYING));
+        addKeyword(TokenType.KW_REWIND, Aliases.get_aliases_for(TokenType.KW_REWIND));
     }
 
     int nextCh;

@@ -115,6 +115,9 @@ public class Parser {
             case KW_FASTFORWARD:
                 parse_fastforward();
                 break;
+            case KW_REWIND:
+                parse_rewind();
+                break;
             case KW_GETPLAYING:
                 System.out.println("GET PLAYING");
                 parse_getplaying();
@@ -139,6 +142,13 @@ public class Parser {
 
         match(TokenType.EOL);
         commandType = CommandType.CMD_FASTFORWARD;
+    }
+
+    private void parse_rewind() {
+        match(TokenType.KW_REWIND);
+
+        match(TokenType.EOL);
+        commandType = CommandType.CMD_REWIND;
     }
 
     private void parse_play() {

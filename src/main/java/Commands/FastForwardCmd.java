@@ -1,5 +1,6 @@
 package Commands;
 
+
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import simbot.SimPlayer;
 
@@ -28,7 +29,4 @@ public class FastForwardCmd {
 
         return true;
     }
-
-
-
 }
