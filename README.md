@@ -9,3 +9,4 @@ Todo:
 - Clicking any of these emojis should action the song accordingly.
 - Once a reaction is made to any of these emoji's, the users reaction should be removed signifying that they may react again (and therefore control the audio playback)
 - FIX AGE RESTRICTED VIDEOS. Simbot says it will play, but it cannot (use DyE - Fantasy or aj tracy lovser)
+- Add -w2g which generates a watchtogether room and sends the link to it
