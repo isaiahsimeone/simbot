@@ -11,3 +11,4 @@ Todo:
 - FIX AGE RESTRICTED VIDEOS. Simbot says it will play, but it cannot (use DyE - Fantasy or aj tracy lovser)
 - Add -w2g which generates a watchtogether room and sends the link to it
 - -p #doyalike kazeWIW ???
+- Soundcloud
