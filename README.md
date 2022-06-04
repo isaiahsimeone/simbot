@@ -12,3 +12,4 @@ Todo:
 - Add -w2g which generates a watchtogether room and sends the link to it
 - -p #doyalike kazeWIW ???
 - Soundcloud
+- Leave call if not used for 2 hours
